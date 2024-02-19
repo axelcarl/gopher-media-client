@@ -10,7 +10,7 @@ export const Login: FC = ({}) => {
   const router = useRouter();
 
   const login = async (name: string, password: string) => {
-    const res = await fetch("http://localhost:8080/login", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
       method: "post",
       headers: {
         Accept: "application/json",
