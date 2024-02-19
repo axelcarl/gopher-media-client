@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 export const Login: FC = ({}) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
   const router = useRouter();
 
   const login = async (name: string, password: string) => {
@@ -22,10 +23,12 @@ export const Login: FC = ({}) => {
       credentials: "include"
     });
 
-    const json = await res.json();
     if (res.status === 200) {
       router.push("/");
+      return;
     } 
+
+    setError(true);
   };
 
   return (
@@ -40,6 +43,7 @@ export const Login: FC = ({}) => {
           value={name}
           onChange={(event) => setName(event.target.value)}
           label="Username"
+          error={error}
         />
         <Input
           type="password"
@@ -47,7 +51,11 @@ export const Login: FC = ({}) => {
           value={password}
           onChange={(event) => setPassword(event.target.value)}
           label="Password"
+          error={error}
         />
+        {error ? <div className="text-red-500">
+          Username or Password was incorrect.
+        </div> : null}
         <button
           onClick={() => login(name, password)}
           className="bg-black text-white rounded-lg px-4 py-2 w-min hover:bg-indigo-500"

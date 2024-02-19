@@ -7,6 +7,7 @@ interface InputProps {
   value?: number | string;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   label?: string;
+  error?: boolean;
 }
 
 export const Input: FC<InputProps> = ({
@@ -16,6 +17,7 @@ export const Input: FC<InputProps> = ({
   value,
   onChange,
   label,
+  error = false
 }) => {
   return (
     <div className="flex flex-col gap-1 has-[:focus]:text-indigo-500">
@@ -31,7 +33,7 @@ export const Input: FC<InputProps> = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className="border-black rounded-md border-solid border p-2 indent-1 focus:outline-indigo-500 focus:placeholder-indigo-500"
+        className={`border-black rounded-md border-solid border p-2 indent-1 focus:outline-indigo-500 focus:placeholder-indigo-500 ${error ? "border-red-500" : ""}`}
       />
     </div>
   );
