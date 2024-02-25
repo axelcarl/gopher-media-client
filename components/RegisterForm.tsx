@@ -2,6 +2,7 @@
 import { useState, FC } from "react";
 import { Input } from "./Input";
 import { useRouter } from "next/navigation";
+import { Button } from "./Button";
 
 export const RegisterForm: FC = ({}) => {
   const [name, setName] = useState("");
@@ -69,12 +70,7 @@ export const RegisterForm: FC = ({}) => {
         {error ? (
           <div className="text-red-500">Passwords do not match!</div>
         ) : null}
-        <button
-          onClick={() => register()}
-          className="bg-black text-white rounded-lg px-4 py-2 w-min hover:bg-indigo-500"
-        >
-          Register
-        </button>
+        <Button onClick={() => register()}>Register</Button>
       </div>
     </div>
   );

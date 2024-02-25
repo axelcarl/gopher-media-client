@@ -1,4 +1,4 @@
-import { Login } from "@/components/Login";
+import { LoginForm } from "@/components/LoginForm";
 import Link from "next/link";
 import { FaForward } from "react-icons/fa6";
 
@@ -13,7 +13,7 @@ export default function LoginPage() {
         <FaForward />
       </Link>
       <div className="w-full h-3/4 grid place-items-center">
-        <Login />
+        <LoginForm />
       </div>
     </div>
   );
