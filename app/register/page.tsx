@@ -1,20 +1,23 @@
-import { Login } from "@/components/Login";
+import { RegisterForm } from "@/components/RegisterForm";
 import Link from "next/link";
-import { FaForward } from "react-icons/fa6";
+import { FC } from "react";
+import { FaBackward } from "react-icons/fa6";
 
-export default function LoginPage() {
+const RegisterPage: FC = () => {
   return (
     <div className="w-full h-screen flex items-center flex-col">
       <Link
-        href="/register"
+        href="/login"
         className="ml-auto p-8 hover:text-indigo-500 font-semibold underline flex gap-2 items-center cursor-pointer"
       >
-        Or, Register a New Account
-        <FaForward />
+        <FaBackward />
+        Back to Login
       </Link>
       <div className="w-full h-3/4 grid place-items-center">
-        <Login />
+        <RegisterForm />
       </div>
     </div>
   );
-}
+};
+
+export default RegisterPage;
