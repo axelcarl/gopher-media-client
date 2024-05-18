@@ -17,7 +17,7 @@ export const RegisterForm: FC = ({}) => {
       return;
     }
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user`, {
       method: "post",
       headers: {
         Accept: "application/json",
