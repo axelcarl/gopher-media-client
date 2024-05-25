@@ -1,25 +1,25 @@
-import { ReactNode } from "react";
-
 interface PostProps {
     title: string
     text: string
-    profilePicture?: ReactNode;
+    profilePicture?: string;
+    username: string
 }
 
 interface ProfilePicProps {
-    picture?: ReactNode
+    picture?: string
 }
 
 export interface post {
     id: number
     title: string
     text: string
+    username: string
 }
 
 const ProfilePic = (props: ProfilePicProps) => {
     return (
         <div className="bg-indigo-500 w-10 h-10 rounded-full">
-            {props.picture}
+            {props.picture ? <img src={props.picture} className="border border-indigo-500 object-contain rounded-full" /> : null}
         </div>
     );
 }
@@ -34,7 +34,10 @@ const Post = (props: PostProps) => {
             </div>
 
             <div className="flex flex-col w-full p-4 border border-indigo-500 rounded hover:border-indigo-400 group">
-                <div className="text-indigo-500 font-bold group-hover:text-indigo-400"> {props.title} </div>
+                <div className="flex justify-between">
+                    <div className="text-indigo-500 font-bold group-hover:text-indigo-400"> {props.title} </div>
+                    <div className="font-light text-slate-700 hover:text-blue-500"> {props.username} </div>
+                </div>
                 <hr className="p-1 m-1" />
                 <div> {props.text} </div>
             </div>

@@ -22,7 +22,7 @@ const Posts = () => {
 
     return (
         <div className="flex flex-col gap-4 items-center">
-            {posts.map((post: post) => <Post key={post.id} title={post.title} text={post.text} />)}
+            {posts.map((post: post) => <Post key={post.id} profilePicture={post.picture} title={post.title} text={post.text} username={post.username} />)}
         </div>
     );
 }
