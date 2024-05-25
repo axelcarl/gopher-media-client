@@ -1,4 +1,5 @@
 "use client";
+import Posts from "@/components/Posts";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
 
@@ -10,15 +11,22 @@ const Page: FC = ({ }) => {
     }
 
     return (
-        <div className="grid grid-cols-[1fr_auto_1fr] py-2 px-4 shadow">
-            <div></div>
-            <div className="text-center p-4 text-2xl group bg-gradient-to-r from-black to-indigo-500 bg-clip-text text-transparent">
-                GOPHER MEDIA
+        <>
+            <header>
+                <div className="grid grid-cols-[1fr_auto_1fr] py-2 px-4 shadow">
+                    <div></div>
+                    <div className="text-center p-4 text-2xl group bg-gradient-to-r from-black to-indigo-500 bg-clip-text text-transparent">
+                        GOPHER MEDIA
+                    </div>
+                    <button className="ml-auto hover:text-indigo-500" onClick={() => logout()}>
+                        Logout
+                    </button>
+                </div>
+            </header>
+            <div className="pt-8">
+                <Posts />
             </div>
-            <button className="ml-auto hover:text-indigo-500" onClick={() => logout()}>
-                Logout
-            </button>
-        </div>
+        </>
     );
 };
 
