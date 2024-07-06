@@ -1,16 +1,14 @@
 "use client";
 
-import { useState, FC, useContext } from "react";
+import { useState, FC } from "react";
 import { Input } from "./Input";
-import { useRouter } from "next/navigation";
 import { Button } from "./Button";
-import { StateAction, StateDispatchContext } from "@/contexts/StateContext";
-import { useAuth } from "@/hooks/useAuth";
+import { useLogin } from "@/hooks/useLogin";
 
 export const LoginForm: FC = ({}) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const { authenticate, loading, error } = useAuth();
+  const { authenticate, loading, error } = useLogin();
 
   return (
     <div className="bg-white flex text-black flex-col w-96 rounded px-8 py-4 shadow-md hover:shadow-lg">

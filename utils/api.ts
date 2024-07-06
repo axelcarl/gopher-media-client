@@ -39,3 +39,13 @@ export const getUser = async (id: number): Promise<User> => {
 
   return response.json();
 };
+
+export const getUserFromCookie = async (): Promise<User> => {
+  const response = await fetchApi("authenticate?full=true");
+
+  if (!response.ok) {
+    throw new Error("Error getting user.");
+  }
+
+  return response.json();
+};

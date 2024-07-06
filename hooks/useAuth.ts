@@ -1,33 +1,11 @@
 "use client";
 
-import { StateAction, StateDispatchContext } from "@/contexts/StateContext";
-import { getUser, login } from "@/utils/api";
-import { useRouter } from "next/navigation";
-import { useCallback, useContext, useState } from "react";
+import { StateContext } from "@/contexts/StateContext";
+import { User } from "@/types/user";
+import { useContext } from "react";
 
-export function useAuth() {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<Error | unknown>(null);
-  const dispatch = useContext(StateDispatchContext);
-  const router = useRouter();
+export function useAuth(): User | null {
+  const state = useContext(StateContext);
 
-  const authenticate = async (name: string, password: string) => {
-    setLoading(true);
-
-    try {
-      const { id } = await login(name, password);
-
-      const user = await getUser(id);
-
-      dispatch({ type: StateAction.SET_USER, payload: user });
-      setLoading(false);
-
-      router.push("/");
-    } catch (err) {
-      setError(err);
-      setLoading(false);
-    }
-  };
-
-  return { authenticate, loading, error };
+  return state.user;
 }
