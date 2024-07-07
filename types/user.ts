@@ -1,8 +1,8 @@
 import { Post } from "./post";
 
 export interface User {
-    id: number,
-    name: string,
-    posts: Post[],
-    picture: string,
+  ID: number;
+  name: string;
+  posts: Post[];
+  picture: string;
 }
