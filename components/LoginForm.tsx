@@ -2,36 +2,13 @@
 
 import { useState, FC } from "react";
 import { Input } from "./Input";
-import { useRouter } from "next/navigation";
 import { Button } from "./Button";
+import { useLogin } from "@/hooks/useLogin";
 
 export const LoginForm: FC = ({}) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
-  const router = useRouter();
-
-  const login = async (name: string, password: string) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
-      method: "post",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        password,
-      }),
-      credentials: "include",
-    });
-
-    if (res.status === 200) {
-      router.push("/");
-      return;
-    }
-
-    setError(true);
-  };
+  const { authenticate, loading, error } = useLogin();
 
   return (
     <div className="bg-white flex text-black flex-col w-96 rounded px-8 py-4 shadow-md hover:shadow-lg">
@@ -43,7 +20,7 @@ export const LoginForm: FC = ({}) => {
           value={name}
           onChange={(event) => setName(event.target.value)}
           label="Username"
-          error={error}
+          error={!!error}
         />
         <Input
           type="password"
@@ -51,14 +28,16 @@ export const LoginForm: FC = ({}) => {
           value={password}
           onChange={(event) => setPassword(event.target.value)}
           label="Password"
-          error={error}
+          error={!!error}
         />
         {error ? (
           <div className="text-red-500">
             Username or Password was incorrect.
           </div>
         ) : null}
-        <Button onClick={() => login(name, password)}>Login</Button>
+        <Button onClick={() => authenticate(name, password)}>
+          {loading ? "..." : "Login"}
+        </Button>
       </div>
     </div>
   );
